@@ -8,7 +8,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: 'environment/.env',
+      envFilePath: `environment/.${process.env.NODE_ENV}.env`,
     }),
     TypeOrmModule,
   ],
