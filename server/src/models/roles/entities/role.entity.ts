@@ -12,7 +12,7 @@ export class Role {
   id: number;
 
   //   Сделать уникальным, и email у пользователя тоже
-  @Column({ name: 'value' })
+  @Column({ name: 'value', unique: true })
   value: string;
 
   @Column({ name: 'description' })
