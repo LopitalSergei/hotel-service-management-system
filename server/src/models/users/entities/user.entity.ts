@@ -1,7 +1,10 @@
+import { Role } from 'src/models/roles/entities/role.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -31,4 +34,11 @@ export class User {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @ManyToMany(() => Role, {
+    cascade: true,
+    eager: true,
+  })
+  @JoinTable({ name: 'user_roles' })
+  roles: Role[];
 }
