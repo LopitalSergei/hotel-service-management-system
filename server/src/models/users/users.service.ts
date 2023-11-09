@@ -9,16 +9,16 @@ import { Repository } from 'typeorm';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private UserRepository: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const newUser = this.UserRepository.create(createUserDto);
-    return await this.UserRepository.save(newUser);
+    const newUser = this.userRepository.create(createUserDto);
+    return await this.userRepository.save(newUser);
   }
 
   async findAll() {
-    const users = await this.UserRepository.find();
+    const users = await this.userRepository.find();
     return users;
   }
 
