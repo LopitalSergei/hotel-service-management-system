@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
@@ -15,6 +23,11 @@ export class RolesController {
   @Get()
   findAll() {
     return this.rolesService.findAll();
+  }
+
+  @Get(':value')
+  findByValue(@Param('value') value: string) {
+    return this.rolesService.findByValue(value);
   }
 
   @Get(':id')

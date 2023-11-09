@@ -12,6 +12,10 @@ export class RolesService {
     private roleRepository: Repository<Role>,
   ) {}
 
+  async findByValue(value: string) {
+    return await this.roleRepository.findOne({ where: { value } });
+  }
+
   async create(createRoleDto: CreateRoleDto) {
     const newRole = this.roleRepository.create(createRoleDto);
     return await this.roleRepository.save(newRole);
