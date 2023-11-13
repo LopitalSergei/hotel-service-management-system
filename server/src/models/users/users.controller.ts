@@ -14,6 +14,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { AddRoleDto } from './dto/add-role.dto';
 
 @Controller('users')
 export class UsersController {
@@ -26,7 +27,7 @@ export class UsersController {
 
   @Get()
   @UseGuards(RolesGuard, JwtAuthGuard)
-  @Roles('ADMIN')
+  @Roles('USER')
   findAll() {
     return this.usersService.findAll();
   }
@@ -44,5 +45,10 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
+  }
+
+  @Post('/role')
+  addRole(@Body() dto: AddRoleDto) {
+    return this.usersService.addRole(dto);
   }
 }
