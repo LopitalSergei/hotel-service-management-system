@@ -13,7 +13,7 @@ import { Auth } from "@/app/api/auth/auth";
 import { setCookie } from "nookies";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
   const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,9 +23,9 @@ export default function SignIn() {
       const email = userData.get("email")?.toString();
       const password = userData.get("password")?.toString();
 
-      const response = await Auth.login({ email, password });
-      if (response) {
-        setCookie(null, "_token", response.token, { path: "/" });
+      const { token } = await Auth.login({ email, password });
+      if (token) {
+        setCookie(null, "_token", token, { path: "/" });
         toast.success("Вход выполнен!");
       }
     } catch (error) {

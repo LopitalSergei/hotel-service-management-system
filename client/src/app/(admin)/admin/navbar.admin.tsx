@@ -36,14 +36,4 @@ const NavbarAdmin = () => {
   );
 };
 
-// {
-//   links.map((link) => (
-//     <li key={link.id}>
-//       <Link key={link.id} href={link.url}>
-//         {link.title}
-//       </Link>
-//     </li>
-//   ));
-// }
-
 export default NavbarAdmin;
